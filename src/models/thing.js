@@ -5,7 +5,7 @@ const Thing = {
   findAll: async (params) => {
     const query = ['SELECT id, quantity, description, name FROM things'];
     if (params.per_page && params.page) {
-      query.push(`LIMIT ${params.per_page} OFFSET ${params.page * params.per_page}`);
+      query.push(`LIMIT ${params.per_page} OFFSET ${(params.page - 1) * params.per_page}`);
     }
     const result = await db.query(query.join(' '));
     return result.rows;
